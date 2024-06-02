@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{normal/base::Layout(~{::section})}">
+<head>
+<meta charset="ISO-8859-1">
+<title th:text="title">Insert title here</title>
+</head>
+<body>
+<section>
+
+<div class="card">
+
+			<div class="card-body">
+
+				<h1 class="text-center">Update Details Carefully...</h1>
+
+				<div class="container-fluid mt-1">
+
+					<div class="row">
+
+						<div class="col-md-10 offset-md-1">
+
+							<form th:action="@{/user/update-process}"
+								 method="POST"  
+							th:object="${contact}"
+							enctype="multipart/form-data"
+							
+								 class=mt-2 >
+
+                               <input type="hidden"  th:value="${contact.contactId}" name="contactId" />
+								<!-- FirstName -->
+								<div class="input-group">
+									<div class="input-group-prepend">
+										<div class="input-group-text" >
+
+											<i class="fa fa-plus"></i>
+										</div>
+
+									</div>
+									<input required type="text" th:value="${contact.name}" id="firstName"name="name" placeholder="Enter Name here" class="form-control"/>
+
+								</div>
+								
+   								<!-- second name -->
+                                 
+                                 <div class="input-group mt-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text"><i class="fas fa-user"></i></span>
+
+									</div>
+									<input required type="text" th:value="${contact.secondName}"id="SecondName"name="secondName" placeholder="Enter Second Name here" class="form-control"/>
+
+								</div>
+								
+								<!-- phone -->
+                                
+                                
+                                <div class="input-group mt-3">
+									<div class="input-group-prepend">
+										<div class="input-group-text" >
+
+											<i class="fa-solid fa-phone"></i>
+										</div>
+
+									</div>
+									<input required  type="number" th:value="${contact.phone}"id="number"name="phone" placeholder="Enter Number here" class="form-control"/>
+
+								</div>
+								
+                                <!-- email -->
+                                           
+                                   <div class="input-group mt-3">
+									<div class="input-group-prepend">
+										<div class="input-group-text" >
+
+											@
+										</div>
+
+									</div>
+									<input required type="text" th:value="${contact.email}" id="email"name="email" placeholder="Enter Email Here" class="form-control"/>
+
+								</div>
+								
+                                           
+                                  <!-- work -->
+                                   <!-- email -->
+                                           
+                                   <div class="input-group mt-3">
+									<div class="input-group-prepend">
+										<div class="input-group-text" >
+
+											<i class="fa-solid fa-briefcase"></i>
+										</div>
+
+									</div>
+									<input required type="text" th:value="${contact.work}" id="work"name="work" placeholder="Enter work here" class="form-control"/>
+
+								</div>
+								
+                                   <!-- description -->
+                                   
+                                   <div class="form-group mt-3">
+                                   
+                                   <textarea name="description" th:text="${contact.description}" placeholder="Enter Contact Description" id="description" cols="30" rows="7" class="form-control"></textarea>
+                                   
+                                   
+                                   <div>
+                                   
+                                   <img src="" style="height:150px; width:150px;" class="profile_picture" th:src="@{'/images/'+${contact.image}}" alt="profile_image" />
+                                   
+                                   
+                                   </div>
+                                   
+                                   </div>
+                                       <!-- contact image -->
+                                   <p>choose a new profile pic</p>    
+                                       <div class="custom-file form-group mt-3">
+                                       <input type="file" name="profileImage" />
+                                       
+                                       </div>
+                                                                 
+                                 <div class="container text-center">
+                                 
+                                 <button class="btn btn-primary">Update Contact</button>
+                                 
+                                 </div>
+                                 
+							</form>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+
+</section>
+</body>
+</html>

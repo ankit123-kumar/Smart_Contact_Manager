@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{base::Layout(~{::section})}">
+<head>
+<meta charset="UTF-8" />
+<title>this is signup page</title>
+</head>
+<body>
+	<section>
+		<div class="container">
+			<div class="row">
+
+				<div class="col-md-6 offset-md-3">
+
+					<div class="mycard mt-5">
+						<div th:if="${session.message}"  th:class="${session.message.type}"class="alert alert-primary" role="alert">
+						 
+						<p class="text-center"th:text="${session.message.content}"></p>
+						
+						 <th:block th:remove="${@sessionHelper.removeMessageFromSession()}"></th:block> 
+						
+						</div>
+						<h1 class="text-center">sign up here!!</h1>
+
+						<form novalidate action="" th:action="@{/do_register}" method="post"
+							th:object="${user}" 
+							enctype="multipart/form-data"
+							>
+
+							<!-- name field -->
+							<div class="mb-2">
+								<label for="name_field" class="form-label"> Your Name</label> <input
+									type="text"
+									 name=name 
+									 class="form-control"
+									 th:classappend="${#fields.hasErrors('name') ? 'is-invalid' : ''}"
+									  id="name_field"
+									placeholder="Enter your name" 
+									th:value="${user.name}"
+									aria-describedby="emailHelp">
+									
+									<div id="validationServer03Feedback" class="invalid-feedback" 
+									th:each="e : ${#fields.errors('name')}"th:text="${e}">
+                                       
+                                    </div>
+							</div>
+
+							<!-- Email field -->
+							<div class="mb-2">
+								<label for="email_field" class="form-label"> Your Email</label>
+								<input type="email"
+								 name=email 
+								 class="form-control"
+								 th:classappend="${#fields.hasErrors('email') ? 'is-invalid' : ''}"
+									id="email_field" 
+									placeholder="Enter your email"
+									th:value="${user.email}" aria-describedby="emailHelp">
+									
+									<div id="validationServer03Feedback" class="invalid-feedback" 
+									th:each="e : ${#fields.errors('email')}"th:text="${e}">
+                                       
+                                    </div>
+									
+									
+							</div>
+
+							<!-- password field -->
+							<div class="mb-2">
+								<label for="password_field" class="form-label"> Your
+									Password</label> <input type="password"
+									 name=password
+									class="form-control"
+									th:classappend="${#fields.hasErrors('password') ? 'is-invalid' : ''}"
+							 
+									id="password_field"
+									placeholder="Enter your password" 
+									th:value="${user.password}"
+									aria-describedby="emailHelp">
+									
+									<div id="validationServer03Feedback" class="invalid-feedback" 
+									th:each="e : ${#fields.errors('password')}"th:text="${e}">
+                                       
+                                    </div>
+							</div>
+
+							<!-- user about field -->
+
+							<textarea placeholder="Enter somthing about yourself "
+							 rows="6" class="form-control mb-2"
+										th:value="${user.about}" name="about">
+								
+								</textarea>
+								
+								
+                                       <!-- contact image -->
+                                       
+                                       <div class="custom-file form-group mt-3">
+                                       <input type="file" name="profileImage1" />
+                                       
+                                       
+
+							<!-- check box -->
+
+							<div class="form-group form-check mb-2 ">
+
+								<input type="checkbox" name="agreement" class="form-check-input"
+									id="agreement" /> <label for="agreement">Accept
+									terms and conditions</label>
+
+							</div>
+
+							<div class="container text-center">
+
+								<button type="submit" class="btn btn-primary">Submit</button>
+
+								<button type="reset" class="btn btn-warning">Reset</button>
+							</div>
+						</form>
+
+					</div>
+
+
+				</div>
+
+			</div>
+
+
+
+		</div>
+
+
+
+	</section>
+</body>
+</html>
